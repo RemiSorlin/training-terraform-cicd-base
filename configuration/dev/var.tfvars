@@ -1,0 +1,5 @@
+resource_group_name = "sylvain.martinez"
+admin_account_login = "devadmindb"
+project_name        = "cicdtsma"
+location            = "westeurope"
+environment         = "dev"

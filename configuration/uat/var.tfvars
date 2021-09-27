@@ -1,0 +1,5 @@
+resource_group_name = "sylvain.martinez"
+admin_account_login = "uatadmindb"
+project_name        = "cicdtsma"
+location            = "westeurope"
+environment         = "uat"
