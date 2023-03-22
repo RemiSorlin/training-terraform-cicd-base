@@ -1,0 +1,29 @@
+name: 'Terraform CI'
+
+on: push
+
+env:
+    ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+    ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+    ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+
+jobs:
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout
+          uses: actions/Checkout@v3
+
+        - name: Setup Terraform
+          uses: hachicorp/setup-terraform@v2
+        
+        - name: Terraform init
+          run: terraform init -backend=false
+
+        - name: Terraform validate
+          run: terraform validate
+
+        - name: Terraform lint
+          run: terraform fmt -check -recursive
