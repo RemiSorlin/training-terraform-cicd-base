@@ -8,6 +8,7 @@ defaults:
 
 env:
   ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
@@ -24,10 +25,10 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: terraform init
+      run: terraform init -backend-config ../configuration/dev/backend.hcl
 
     - name: Terraform plan
-      run: terraform plan
+      run: terraform plan -var-file=../configuration/dev/var.tfvars
 
   apply:
     name: Apply
@@ -42,8 +43,8 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: terraform init
+      run: terraform init -backend-config ../configuration/dev/backend.hcl
 
     - name: Terraform apply
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var-file=../configuration/dev/var.tfvars
 
