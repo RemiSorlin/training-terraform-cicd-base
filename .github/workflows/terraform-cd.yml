@@ -25,10 +25,10 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: terraform init -backend-config ../configuration/dev/backend.hcl
+      run: terraform init -backend-config ../../configuration/dev/backend.hcl
 
     - name: Terraform plan
-      run: terraform plan -var-file=../configuration/dev/var.tfvars
+      run: terraform plan -var-file=../../configuration/dev/var.tfvars
 
   apply:
     name: Apply
@@ -43,8 +43,8 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: terraform init -backend-config ../configuration/dev/backend.hcl
+      run: terraform init -backend-config ../../configuration/dev/backend.hcl
 
     - name: Terraform apply
-      run: terraform apply -auto-approve -var-file=../configuration/dev/var.tfvars
+      run: terraform apply -auto-approve -var-file=../../configuration/dev/var.tfvars
 
