@@ -1,5 +1,5 @@
-resource_group_name = "sylvain.martinez"
+resource_group_name = "remi.sorlin"
 admin_account_login = "prodadmindb"
-project_name        = "prodcicdtsma"
+project_name        = "prodcicdtrso"
 location            = "westeurope"
 environment         = "prod"

@@ -1,5 +1,5 @@
-resource_group_name = "sylvain.martinez"
+resource_group_name = "remi.sorlin"
 admin_account_login = "devadmindb"
-project_name        = "devcicdtsma"
+project_name        = "devcicdtrso"
 location            = "westeurope"
 environment         = "dev"

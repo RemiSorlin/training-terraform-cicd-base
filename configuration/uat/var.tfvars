@@ -1,5 +1,5 @@
-resource_group_name = "sylvain.martinez"
+resource_group_name = "remi.sorlin"
 admin_account_login = "uatadmindb"
-project_name        = "uatcicdtsma"
+project_name        = "uatcicdtrso"
 location            = "westeurope"
 environment         = "uat"
