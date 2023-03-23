@@ -31,4 +31,4 @@ jobs:
     - name: Terraform plan
       run: terraform plan -var-file=../../configuration/dev/var.tfvars
       env: 
-        TF_VAR_ADMIN_ACCOUNT_PASSWORD: ${{ secrets.DB_ACCOUNT_PASSWORD }}
+        TF_VAR_admin_account_password: ${{ secrets.DB_ACCOUNT_PASSWORD }}
