@@ -10,7 +10,7 @@ env:
 
 jobs:
   plan_dev:
-    name: '[Dev] Plan'
+    name: '[Dev] Apply'
     runs-on: ubuntu-latest
     environment: dev
 
@@ -19,8 +19,45 @@ jobs:
         uses: actions/Checkout@v3
 
       - uses: ./.github/actions/terraform
+        name: 'Terraform apply'
         with:
-          command: 'plan'
+          command: 'apply'
           env: 'dev'
           db-account-password: '${{ secrets.DB_ACCOUNT_PASSWORD }}'
           action-workspace: '${{ github.workspace}}/src/terraform'
+
+  plan_uat:
+    name: '[Uat] Apply'
+    runs-on: ubuntu-latest
+    environment: uat_plan
+
+    steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+
+      - uses: ./.github/actions/terraform
+        name: 'Terraform plan'
+        with:
+          command: 'plan'
+          env: 'uat'
+          db-account-password: '${{ secrets.DB_ACCOUNT_PASSWORD }}'
+          action-workspace: '${{ github.workspace}}/src/terraform'
+        
+
+  apply_uat:
+    name: '[Uat] Apply'
+    runs-on: ubuntu-latest
+    environment: uat_apply
+
+    steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+
+      - uses: ./.github/actions/terraform
+        name: 'Terraform apply'
+        with:
+          command: 'apply'
+          env: 'uat'
+          db-account-password: '${{ secrets.DB_ACCOUNT_PASSWORD }}'
+          action-workspace: '${{ github.workspace}}/src/terraform'
+        
