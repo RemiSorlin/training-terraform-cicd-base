@@ -32,7 +32,7 @@ runs:
       shell: bash
 
     - name: Terraform ${{ inputs.command }}
-      run: cd ${{ github.workspace }} && terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars
+      run: terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars
       working-directory: ${{ inputs.action-workspace }}
       shell: bash
       env: 
