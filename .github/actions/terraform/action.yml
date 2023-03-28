@@ -1,4 +1,4 @@
-name: 'Terraform ${{ inputs.command }}'
+name: 'Terraform command'
 description: 'Run a terraform command'
 inputs:
   command:
@@ -7,6 +7,7 @@ inputs:
   env:
     description: 'The environment code (eg. dev)'
     required: true
+  
 runs:
   using: "composite"
   steps:
