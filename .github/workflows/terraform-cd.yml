@@ -9,7 +9,7 @@ env:
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
 jobs:
-  plan_dev:
+  dev:
     name: '[Dev] Apply'
     runs-on: ubuntu-latest
     environment: dev
@@ -30,6 +30,7 @@ jobs:
     name: '[Uat] Apply'
     runs-on: ubuntu-latest
     environment: uat_plan
+    needs: dev
 
     steps:
       - name: Checkout
@@ -48,6 +49,7 @@ jobs:
     name: '[Uat] Apply'
     runs-on: ubuntu-latest
     environment: uat_apply
+    needs: plan_uat
 
     steps:
       - name: Checkout
