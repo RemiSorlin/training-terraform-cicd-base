@@ -7,23 +7,26 @@ inputs:
   env:
     description: 'The environment code (eg. dev)'
     required: true
+  action-workspace:
+    description: 'The path of the workspace containing all files'
+    required: false
+    default: ${{ github.workspace }}
   db-account-password:
     description: 'The sql admin password'
 runs:
   using: "composite"
   steps:
-    - run: ls -la ${{ github.workspace }}
-      shell: bash
-      
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: cd ${{ github.workspace }} && terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
+      run: terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
+      working-directory: ${{ inputs.action-workspace }}
       shell: bash
 
     - name: Terraform ${{ inputs.command }}
       run: cd ${{ github.workspace }} && terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars
+      working-directory: ${{ inputs.action-workspace }}
       shell: bash
       env: 
         TF_VAR_admin_account_password: ${{ inputs.db-account-password }}
