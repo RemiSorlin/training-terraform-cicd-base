@@ -1,0 +1,25 @@
+name: 'Terraform ${{ inputs.command }}'
+description: 'Run a terraform command'
+inputs:
+  command:
+    description: 'The command to run'
+    required: true
+  env:
+    description: 'The environment code (eg. dev)'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/Checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+    
+    - name: Terraform init
+      run: terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
+
+    - name: Terraform ${{ inputs.command }}
+      run: terraform ${{ inputs.command }} -var-file=../../configuration/dev/var.tfvars
+      env: 
+        TF_VAR_admin_account_password: ${{ secrets.DB_ACCOUNT_PASSWORD }}

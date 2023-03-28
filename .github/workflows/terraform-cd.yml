@@ -13,22 +13,14 @@ env:
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
 jobs:
-  plan:
-    name: Plan
+  plan_dev:
+    name: '[Dev] Plan'
     runs-on: ubuntu-latest
     environment: dev
 
     steps:
-    - name: Checkout
-      uses: actions/Checkout@v3
+      - uses: ./.github/actions/terraform.yml
+        with:
+          command: 'plan'
+          env: 'dev'
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-    
-    - name: Terraform init
-      run: terraform init -backend-config ../../configuration/dev/backend.hcl
-
-    - name: Terraform plan
-      run: terraform plan -var-file=../../configuration/dev/var.tfvars
-      env: 
-        TF_VAR_admin_account_password: ${{ secrets.DB_ACCOUNT_PASSWORD }}
