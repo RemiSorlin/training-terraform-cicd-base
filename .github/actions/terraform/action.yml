@@ -16,6 +16,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: |
+        echo "action-workspace: ${{ inputs.action-workspace }}"
+        pwd
+        ls -la
+      working-directory: ${{ inputs.action-workspace }}
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
     
