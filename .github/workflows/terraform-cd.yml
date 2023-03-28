@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/Checkout@v3
 
-      - uses: ./.github/actions/terraform
+      - uses: .github/actions/terraform
         with:
           command: 'plan'
           env: 'dev'
