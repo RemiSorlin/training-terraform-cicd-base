@@ -12,6 +12,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: ls -la ${{ github.workspace }}
+      shell: bash
+      
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
     
