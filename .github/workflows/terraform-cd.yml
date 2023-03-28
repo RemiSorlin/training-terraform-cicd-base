@@ -27,7 +27,7 @@ jobs:
           action-workspace: '${{ github.workspace}}/src/terraform'
 
   plan_uat:
-    name: '[Uat] Apply'
+    name: '[Uat] Plan'
     runs-on: ubuntu-latest
     environment: uat_plan
     needs: dev
