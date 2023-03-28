@@ -26,4 +26,5 @@ jobs:
         with:
           command: 'plan'
           env: 'dev'
+          db-account-password: '${{ secrets.DB_ACCOUNT_PASSWORD }}'
 

@@ -7,7 +7,8 @@ inputs:
   env:
     description: 'The environment code (eg. dev)'
     required: true
-  
+  db-account-password:
+    description: 'The sql admin password'
 runs:
   using: "composite"
   steps:
@@ -22,4 +23,4 @@ runs:
       run: terraform ${{ inputs.command }} -var-file=../../configuration/dev/var.tfvars
       shell: bash
       env: 
-        TF_VAR_admin_account_password: ${{ secrets.DB_ACCOUNT_PASSWORD }}
+        TF_VAR_admin_account_password: ${{ inputs.db-account-password }}
