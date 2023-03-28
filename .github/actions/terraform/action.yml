@@ -16,13 +16,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
-        echo "action-workspace: ${{ inputs.action-workspace }}"
-        pwd
-        ls -la
-      working-directory: ${{ inputs.action-workspace }}
-      shell: bash
-
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
     
@@ -32,7 +25,7 @@ runs:
       shell: bash
 
     - name: Terraform ${{ inputs.command }}
-      run: terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars
+      run: terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars -input=false
       working-directory: ${{ inputs.action-workspace }}
       shell: bash
       env: 
