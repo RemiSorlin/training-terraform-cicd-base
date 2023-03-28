@@ -15,8 +15,10 @@ runs:
     
     - name: Terraform init
       run: terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
+      shell: bash
 
     - name: Terraform ${{ inputs.command }}
       run: terraform ${{ inputs.command }} -var-file=../../configuration/dev/var.tfvars
+      shell: bash
       env: 
         TF_VAR_admin_account_password: ${{ secrets.DB_ACCOUNT_PASSWORD }}
