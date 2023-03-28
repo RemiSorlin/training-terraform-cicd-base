@@ -19,6 +19,9 @@ jobs:
     environment: dev
 
     steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+
       - uses: ./.github/actions/terraform.yml
         with:
           command: 'plan'
