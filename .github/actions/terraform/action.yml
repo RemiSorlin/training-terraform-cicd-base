@@ -16,11 +16,11 @@ runs:
       uses: hashicorp/setup-terraform@v2
     
     - name: Terraform init
-      run: terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
+      run: cd ${{ github.action_path }} && terraform init -backend-config ../../configuration/${{ inputs.env }}/backend.hcl
       shell: bash
 
     - name: Terraform ${{ inputs.command }}
-      run: terraform ${{ inputs.command }} -var-file=../../configuration/dev/var.tfvars
+      run: cd ${{ github.action_path }} && terraform ${{ inputs.command }} -var-file=../../configuration/${{ inputs.env }}/var.tfvars
       shell: bash
       env: 
         TF_VAR_admin_account_password: ${{ inputs.db-account-password }}
