@@ -30,3 +30,4 @@ runs:
       shell: bash
       env: 
         TF_VAR_admin_account_password: ${{ inputs.db-account-password }}
+        TF_CLI_ARGS_apply: "-auto-approve"
