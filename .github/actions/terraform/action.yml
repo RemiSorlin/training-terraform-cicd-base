@@ -21,6 +21,7 @@ runs:
         pwd
         ls -la
       working-directory: ${{ inputs.action-workspace }}
+      shell: bash
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
